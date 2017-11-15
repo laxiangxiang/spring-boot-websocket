@@ -13,6 +13,7 @@ public class Myservlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doGet(req, resp);
         System.out.println(">>>>>>>>>>>>>>>>>doGet()<<<<<<<<<<<<<<<<<<<");
+        doPost(req,resp);
     }
 
     @Override
@@ -20,6 +21,7 @@ public class Myservlet extends HttpServlet{
 //        super.doPost(req, resp);
 
         System.out.println(">>>>>>>>>>>>>>>>>>doPost<<<<<<<<<<<<<<<<<<<");
+        resp.setCharacterEncoding("utf8");
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
         out.println("<html>");

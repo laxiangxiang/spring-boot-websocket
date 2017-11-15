@@ -14,12 +14,14 @@ public class MyServlet3 extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doGet(req, resp);
         System.out.println(">>>>>>>>>>>>>>>>>>>doGet()2<<<<<<<<<<<<<<<<<<<<<");
+        doPost(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doPost(req, resp);
         System.out.println(">>>>>>>>>>doPost2()<<<<<<<<<<<");
+        resp.setCharacterEncoding("utf8");
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
         out.println("<html>");
