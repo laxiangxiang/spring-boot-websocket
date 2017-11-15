@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+#Thymeleaf缓存在开发过程中，肯定是不行的，那么就要在开发的时候把缓存关闭，只需要在application.properties进行配置即可
+spring:
+  thymeleaf:
+#    prefix: classpath:/templates/
+#    suffix: html
+#    mode: HTML5
+#    encoding: UTF-8
+#    content-type: text/html
+    cache: false
+
+
+
