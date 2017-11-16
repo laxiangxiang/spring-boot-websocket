@@ -84,6 +84,12 @@
 			<artifactId>jstl-api</artifactId>
 			<version>1.2</version>
 		</dependency>
+
+		<!--actuator监控和管理生产环境-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

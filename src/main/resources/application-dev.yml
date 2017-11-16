@@ -24,7 +24,13 @@ application:
   # 自定义属性，可以在Controller中读取
   hello: hello GOD
 
-
+info:
+  app:
+    name: ecs
+    version: 1.0.0
+  build:
+    artifactId: @project.artifactId@
+    version: @project.version@
 
 
 
