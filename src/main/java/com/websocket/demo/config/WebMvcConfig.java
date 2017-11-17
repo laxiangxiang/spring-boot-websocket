@@ -2,6 +2,7 @@ package com.websocket.demo.config;
 
 import com.websocket.demo.intercepteor.MyInterceptor1;
 import com.websocket.demo.intercepteor.MyInterceptor2;
+import com.websocket.demo.intercepteor.SysUserLoginIntercepter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -37,5 +38,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 //        super.addInterceptors(registry);
         registry.addInterceptor(new MyInterceptor1()).addPathPatterns("/**");
         registry.addInterceptor(new MyInterceptor2()).addPathPatterns("/**");
+        registry.addInterceptor(new SysUserLoginIntercepter()).addPathPatterns("/login");
     }
 }

@@ -1,6 +1,6 @@
 package com.websocket.demo.controller;
 
-import com.websocket.demo.dto.DemoInfo;
+import com.websocket.demo.domain.DemoInfo;
 import com.websocket.demo.service.DemoInfoService;
 import javassist.NotFoundException;
 import org.springframework.stereotype.Controller;

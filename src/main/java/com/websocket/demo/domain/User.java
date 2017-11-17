@@ -1,4 +1,4 @@
-package com.websocket.demo.dto;
+package com.websocket.demo.domain;
 
 /**
  * @author gacl

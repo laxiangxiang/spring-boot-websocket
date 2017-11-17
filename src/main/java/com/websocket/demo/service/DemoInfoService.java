@@ -1,6 +1,6 @@
 package com.websocket.demo.service;
 
-import com.websocket.demo.dto.DemoInfo;
+import com.websocket.demo.domain.DemoInfo;
 import com.websocket.demo.repository.DemoInfoRepository;
 import javassist.NotFoundException;
 import org.springframework.cache.annotation.CacheEvict;
@@ -9,7 +9,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.persistence.Cacheable;
 
 @Service
 public class DemoInfoService {

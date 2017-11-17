@@ -1,6 +1,6 @@
 package com.websocket.demo.mybatisMapper;
 
-import com.websocket.demo.dto.User;
+import com.websocket.demo.domain.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
