@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
@@ -16,7 +17,8 @@ public class DemoInfoController {
     @Resource
     private DemoInfoService demoInfoService;
 //=========================redis缓存测试controller=========================
-    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    @RequestMapping(value = "/test/redisCache",method = RequestMethod.GET)
+    @ResponseBody
     public String test(){
         DemoInfo loaded = demoInfoService.findById(1L);
         System.out.println("loaded="+loaded);
@@ -28,6 +30,7 @@ public class DemoInfoController {
     }
 
     @RequestMapping(value = "/deleted",method = RequestMethod.DELETE)
+    @ResponseBody
     public String deleted(@RequestParam Long id){
         demoInfoService.deletedFromCache(id);
         return "ok";
@@ -36,7 +39,8 @@ public class DemoInfoController {
 //=========================EhCache缓存测试controller=========================
 
 
-    @RequestMapping("/test")
+    @RequestMapping(value = "/test/testEhCache",method = RequestMethod.GET)
+    @ResponseBody
     public String testEhCache(){
 
         //存入两条数据.

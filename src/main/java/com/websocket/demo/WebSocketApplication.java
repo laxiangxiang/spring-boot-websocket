@@ -1,6 +1,7 @@
 package com.websocket.demo;
 
 import com.websocket.demo.servlet.Myservlet;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,6 +9,7 @@ import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.MultipartConfigElement;
@@ -21,6 +23,9 @@ import javax.servlet.MultipartConfigElement;
  * 在 SpringBootApplication上使用@ServletComponentScan 注解后，
  * Servlet、Filter、Listener 可以直接通过 @WebServlet、@WebFilter、@WebListener 注解自动注册，无需其他代码
  */
+//如果不加MapperScan注解需要在Mapper接口上添加@Mapper注解
+//@MapperScan(value = "com.websocket.demo.mybatisMapper")
+@EnableTransactionManagement//事务管理注解
 public class WebSocketApplication {
 
 	public static void main(String[] args) {

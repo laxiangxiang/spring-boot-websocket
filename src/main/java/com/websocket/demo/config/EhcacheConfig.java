@@ -8,8 +8,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
-@Configuration
-@EnableCaching//标注启动缓存
+/**
+ * Ehcache缓存和Redis缓存选择一个
+ */
+//@Configuration
+//@EnableCaching//标注启动缓存
 public class EhcacheConfig {
 
     /**
