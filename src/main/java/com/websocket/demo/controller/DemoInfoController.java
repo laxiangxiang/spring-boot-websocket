@@ -33,7 +33,7 @@ public class DemoInfoController {
         return "ok";
     }
 
-//=========================redis缓存测试controller=========================
+//=========================EhCache缓存测试controller=========================
 
 
     @RequestMapping("/test")
