@@ -11,6 +11,11 @@
 	<name>webSocket</name>
 	<description>Demo project for Spring Boot</description>
 
+	<!--
+       spring boot 父节点依赖,
+       引入这个之后相关的引入就不需要添加version配置，
+       spring boot会自动选择最合适的版本进行添加。
+     -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -29,10 +34,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
+		<!-- thmleaf模板依赖. -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		<!-- spring boot web支持：mvc,aop... -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -47,10 +54,98 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<!--junit测试依赖-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!--swagger2依赖，构建API文档-->
+		<!--在引入Swagger2的依赖后，我们需要创建一个配置类。这个配置类应该是和你的启动类是同级的，这里，我直接在启动类中进行代码书写了（就是这么懒……）-->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+
+		<!--引入jsp依赖-->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp.jstl</groupId>
+			<artifactId>jstl-api</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<!--actuator监控和管理生产环境-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<!--
+           包含支持UI模版（Velocity，FreeMarker，JasperReports），
+           邮件服务，
+           脚本服务(JRuby)，
+           缓存Cache（EHCache），
+           任务计划Scheduling（uartz）。
+        -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+
+		<!-- 集成ehcache需要的依赖-->
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+		</dependency>
+		<!-- 添加redis支持-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+			<version>1.5.6.RELEASE</version>
+		</dependency>
+		<!--spring boot 共享session redis-->
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-data-redis</artifactId>
+		</dependency>
+
+		<!-- JPA操作数据库. -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!-- mysql 数据库驱动. -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<!--mybaits在spring-boot中的依赖-->
+		<!--入Mybatis依赖后，这里有个小贴士，我们可以不再引入spring-boot-starter-jdbc的依赖，因为Mybatis的依赖已经存在JDBC依赖了-->
+		<!--Hibernate与Mybatis是最为常用的两大框架，其中Hibernate学习周期较长，
+		因为它使用HQL语言代替SQL，以对象为单位操作数据库。
+		而Mybatis使用SQL，也是最为直观的，绝大多数的使用Mysql的互联网公司使用Mybatis作为ORM框架-->
+		<!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>1.3.1</version>
 		</dependency>
 	</dependencies>
 

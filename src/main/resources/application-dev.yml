@@ -1,0 +1,68 @@
+server:
+  port: 8080
+
+#Thymeleaf缓存在开发过程中，肯定是不行的，那么就要在开发的时候把缓存关闭，只需要在application.properties进行配置即可
+spring:
+  thymeleaf:
+#    prefix: classpath:/templates/
+#    suffix: html
+#    mode: HTML5
+#    encoding: UTF-8
+#    content-type: text/html
+    cache: false
+
+  #配置jsp
+#  在src/main/resources/application.properties文件中配置JSP和传统Spring MVC中和view的关联
+  mvc:
+    view:
+      # 页面默认前缀目录
+      prefix: /WEB-INF/jsp
+      # 响应页面默认后缀
+      suffix: .jsp
+  ########################################################
+  ###datasource  配置MySQL数据源；
+  ########################################################
+  datasource:
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+  ########################################################
+  ###REDIS (RedisProperties) redis基本配置；
+  ########################################################
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+    pool:
+      max-active: 8
+      max-wait: -1
+      min-idle: 0
+      max-idle: 8
+  ########################################################
+  ### Java Persistence Api 自动进行建表
+  ########################################################
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+
+
+application:
+  # 自定义属性，可以在Controller中读取
+  hello: hello GOD
+
+info:
+  app:
+    name: ecs
+    version: 1.0.0
+  build:
+    artifactId: @project.artifactId@
+    version: @project.version@
+
+
+

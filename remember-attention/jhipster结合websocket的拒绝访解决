@@ -1,0 +1,21 @@
+在 public class WebsocketConfiguration extends AbstractWebSocketMessageBrokerConfigurer 这个类中
+的方法：private DefaultHandshakeHandler defaultHandshakeHandler() {
+
+}
+进行修改：
+private DefaultHandshakeHandler defaultHandshakeHandler() {
+        return new DefaultHandshakeHandler() {
+            @Override
+            protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes) {
+                Principal principal = request.getPrincipal();
+                if (principal == null) {
+                    Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+//                    authorities.add(new SimpleGrantedAuthority(AuthoritiesConstants.ANONYMOUS));
+//                    principal = new AnonymousAuthenticationToken("WebsocketConfiguration", "anonymous", authorities);
+                    authorities.add(new SimpleGrantedAuthority(AuthoritiesConstants.ADMIN));
+                    principal = new RememberMeAuthenticationToken("WebsocketConfiguration","admin",authorities);
+                }
+                return principal;
+            }
+        };
+    }
