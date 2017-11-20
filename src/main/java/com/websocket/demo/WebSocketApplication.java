@@ -36,6 +36,7 @@ public class WebSocketApplication {
          * Banner.Mode.CONSOLE:控制台输出，默认方式;
          * Banner.Mode.LOG:日志输出方式;
          */
+		System.out.println("程序开始启动");
 		application.setBannerMode(Banner.Mode.OFF);
 		application.run(args);
 	}
