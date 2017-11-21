@@ -88,6 +88,6 @@ info:
     version: @project.version@
 
 logging:
-  level: debug
+  level: error
 
 
