@@ -23,6 +23,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 //        super.addViewControllers(registry);
         registry.addViewController("/ws").setViewName("/ws");
         registry.addViewController("/ws2").setViewName("/ws2");
+        registry.addViewController("/sendMailWithFile").setViewName("/sendMailWithFile");
         registry.addViewController("/websocket/index.html").setViewName("/websocket/index.html");
     }
 

@@ -51,6 +51,29 @@ spring:
       naming:
         strategy: org.hibernate.cfg.ImprovedNamingStrategy
 
+  ########################################################
+  ###mail setting
+  ########################################################
+
+  mail:
+  # 设置邮箱主机,以qq邮箱为例
+    host: smtp.163.com
+    port:
+    # 设置用户名
+    username: 13895167943@163.com
+    # 设置密码
+    password: 31181993xyz
+    properties:
+      mail:
+        smtp:
+          # 设置是否需要认证，如果为true,那么用户名和密码就必须的，
+          #如果设置false，可以不设置用户名和密码，当然也得看你的对接的平台是否支持无密码进行访问的。
+          auth: true
+          # STARTTLS[1]  是对纯文本通信协议的扩展。它提供一种方式将纯文本连接升级为加密连接（TLS或SSL），而不是另外使用一个端口作加密通信
+          starttls:
+            enable: true
+            required: true
+
 
 application:
   # 自定义属性，可以在Controller中读取
