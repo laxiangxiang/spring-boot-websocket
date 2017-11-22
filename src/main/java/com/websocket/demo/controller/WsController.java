@@ -6,6 +6,8 @@ import com.websocket.demo.dto.ResponseMessage;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/send")
@@ -21,6 +24,8 @@ public class WsController {
 
     @Resource
     private SimpMessageSendingOperations simpMessageSendingOperations;
+
+    private static Logger logger = LoggerFactory.getLogger(WsController.class);
 
     /**
      * @MessageMapping注解和我们之前使用的@RequestMapping类似,接收客户端发送消息的路径
@@ -41,27 +46,36 @@ public class WsController {
     public People sayTest(People people){
         People people1 = new People(people.getName(),people.getAge());
         System.out.println("people:"+people);
+        logger.debug("sayTest(debug)消息发送成功:{}",people);
+        logger.info("sayTest(info)消息发送成功:{}",people);
+        logger.error("sayTest(error)消息发送成功:{}",people);
         return people1;
     }
 
     /**
      * 主动发送消息
-     * @param name
-     * @param age
+     * @param peopleName
+     * @param peopleAge
      * @return
      */
     @ApiOperation(value = "通过接口利用websocket主动向前端页面发送消息",notes = "向前端发送people对象")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "peopleName",value = "姓名",required = true,dataType = "String"),
-            @ApiImplicitParam(name = "peopleAge",value = "年龄",required = true,dataType = "String")
+//            @ApiImplicitParam(name = "peopleName",value = "姓名",required = true,dataType = "String"),
+//            @ApiImplicitParam(name = "peopleAge",value = "年龄",required = true,dataType = "String")
     })
     @RequestMapping(value = "/send/withSocket",method = RequestMethod.GET)
-    public People sendPeople(@RequestParam(name = "peopleName") String name,@RequestParam("peopleAge") String age){
-        People people = new People(name,age);
+    @MessageMapping("/sendPeople")
+    public People sendPeople(@RequestParam(name = "peopleName") String peopleName,@RequestParam("peopleAge") String peopleAge,People people){
+    if (people.getName() == null && people.getAge() == null){
+            people = new People(peopleName,peopleAge);
+        }
         //发送给指定用户
         //simpMessageSendingOperations.convertAndSendToUser("1","/topic/getMessage",people);
         //广播
-        simpMessageSendingOperations.convertAndSend("/topic/getMessage",people);
+        simpMessageSendingOperations.convertAndSend("/topic/getPeople",people);
+        logger.debug("sendPeople(debug)消息发送成功:{}",people);
+        logger.info("sendPeople(info)消息发送成功:{}",people);
+        logger.error("sendPeople(error)消息发送成功:{}",people);
         return people;
     }
 

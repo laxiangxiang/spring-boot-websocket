@@ -4,7 +4,9 @@ server:
 #Thymeleaf缓存在开发过程中，肯定是不行的，那么就要在开发的时候把缓存关闭，只需要在application.properties进行配置即可
 spring:
   thymeleaf:
-#    prefix: classpath:/templates/
+#    使用thymeleaf模板一定要配置此项，否则在项目打包为jar时会访问不到template下的html文件
+#    打包使用LifeCycle下的组件进行打包，先clean，再install
+    prefix: classpath:/templates
 #    suffix: html
 #    mode: HTML5
 #    encoding: UTF-8
