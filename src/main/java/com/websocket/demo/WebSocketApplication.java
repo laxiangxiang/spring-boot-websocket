@@ -9,6 +9,7 @@ import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.DispatcherServlet;
 
@@ -26,6 +27,7 @@ import javax.servlet.MultipartConfigElement;
 //如果不加MapperScan注解需要在Mapper接口上添加@Mapper注解
 //@MapperScan(value = "com.websocket.demo.mybatisMapper")
 @EnableTransactionManagement//事务管理注解
+@EnableAsync//启用异步调用
 public class WebSocketApplication {
 
 	public static void main(String[] args) {
