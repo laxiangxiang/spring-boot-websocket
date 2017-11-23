@@ -82,6 +82,10 @@ public class WsController {
     @ApiOperation(value = "接口通讯测试",notes = "前端请求，访问测试")
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     public Boolean test(){
+        logger.debug("test(debug)消息发送成功");
+        logger.info("test(info)消息发送成功");
+        logger.warn("test(warn)消息发送成功");
+        logger.error("test(error)消息发送成功");
         return true;
     }
 

@@ -89,7 +89,5 @@ info:
     artifactId: @project.artifactId@
     version: @project.version@
 
-logging:
-  level: debug
 
 

@@ -4,4 +4,15 @@ server:
 spring:
   profiles:
     active: dev
+logging:
+#  level: info
+  pattern:
+#    格式化，只输出日期和内容
+    console: "%d %-5level [%thread] %logger{0}: %msg%n"
+#  日志文件存放路径,没有指定会在项目当前目录下生成日志文件
+#  path: C:\
+#  日志文件名称，没有指定则默认为spring.log
+#  file: C:\mylLog
+#  指定日志配置文件，根据不同的profile使用不同的配置文件
+  config: classpath:logback-spring.xml
 

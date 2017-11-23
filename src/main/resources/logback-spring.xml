@@ -1,14 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-<include resource="org/springframework/boot/logging/logback/base.xml" />
-<logger name="org.springframework.web" level="INFO"/>
-<logger name="org.springboot.sample" level="TRACE" />
 
-<springProfile name="dev">
-    <logger name="org.springboot.sample" level="DEBUG" />
-</springProfile>
+<configuration scan="true">
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
-<springProfile name="prod">
-    <logger name="org.springboot.sample" level="INFO" />
-</springProfile>
+    <!-- The FILE and ASYNC appenders are here as examples for a production configuration -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--滚动策略，按照时间滚动 TimeBasedRollingPolicy-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--定义了日志的切分方式——把每一天的日志归档到一个文件中-->
+            <fileNamePattern>websocket.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!--只保留最近30天的日志-->
+            <maxHistory>30</maxHistory>
+            <!--用来指定日志文件的上限大小，那么到了这个值，就会删除旧的日志-->
+            <!--<totalSizeCap>1GB</totalSizeCap>-->
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>300MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <charset>utf-8</charset>
+            <Pattern>%d %-5level [%thread] %logger{0}: %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>65536</queueSize>
+        <!--<discardingThreshold>0</discardingThreshold>-->
+        <appender-ref ref="FILE"/>
+    </appender>
+
+    <logger name="com.websocket.demo" level="INFO"/>
+
+    <!--<logger name="javax.activation" level="WARN"/>-->
+    <!--<logger name="javax.mail" level="WARN"/>-->
+    <!--<logger name="javax.xml.bind" level="WARN"/>-->
+    <!--<logger name="ch.qos.logback" level="WARN"/>-->
+    <!--<logger name="com.codahale.metrics" level="WARN"/>-->
+    <!--<logger name="com.ryantenney" level="WARN"/>-->
+    <!--<logger name="com.sun.xml.internal.bind" level="WARN"/>-->
+    <!--<logger name="com.zaxxer" level="WARN"/>-->
+    <!--<logger name="io.undertow" level="WARN"/>-->
+    <!--<logger name="net.sf.ehcache" level="WARN"/>-->
+    <!--<logger name="org.apache" level="WARN"/>-->
+    <!--<logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>-->
+    <!--<logger name="org.bson" level="WARN"/>-->
+    <!--<logger name="org.elasticsearch" level="WARN"/>-->
+    <!--<logger name="org.hibernate.validator" level="WARN"/>-->
+    <!--<logger name="org.hibernate" level="WARN"/>-->
+    <!--<logger name="org.hibernate.ejb.HibernatePersistence" level="OFF"/>-->
+    <!--<logger name="org.springframework" level="WARN"/>-->
+    <!--<logger name="org.springframework.web" level="WARN"/>-->
+    <!--<logger name="org.springframework.security" level="WARN"/>-->
+    <!--<logger name="org.springframework.cache" level="WARN"/>-->
+    <!--<logger name="org.thymeleaf" level="WARN"/>-->
+    <!--<logger name="org.xnio" level="WARN"/>-->
+    <!--<logger name="springfox" level="WARN"/>-->
+    <!--<logger name="sun.rmi" level="WARN"/>-->
+    <!--<logger name="liquibase" level="WARN"/>-->
+    <!--<logger name="sun.rmi.transport" level="WARN"/>-->
+    <!--<logger name="com.prosysopc.ua" level="WARN"/>-->
+    <!--<logger name="org.opcfoundation.ua" level="WARN"/>-->
+    <!--<logger name="reactor.io.net.impl.netty.tcp.NettyTcpClient" level="WARN"/>-->
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ASYNC"/>
+    </root>
+
 </configuration>
